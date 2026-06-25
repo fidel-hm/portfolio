@@ -12,6 +12,7 @@
   --accent: #ff4d2e;          /* the single playful accent */
   --accent-ink: #ffffff;      /* text on accent fills */
   --radius: 16px;             /* soft, friendly image corners */
+  --space-32: 32px;           /* tokens.css doesn't define 32; this page needs it */
 }
 
 /* ---- Page shell ---------------------------------------------------------- */
@@ -105,14 +106,12 @@
   animation: marquee 24s linear infinite;
   font-size: clamp(36px, 6vw, 76px);
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.03em;   /* looser tracking so the outlines never collide */
 }
 .marquee__track span {
   padding-inline: var(--space-32);
-  color: transparent;
-  -webkit-text-stroke: 1px var(--color-text);
+  color: var(--color-text-muted);   /* solid glyphs — no outline strokes to cross/overlap */
 }
-.marquee__track .hot { -webkit-text-stroke-color: var(--accent); }
+.marquee__track .hot { color: var(--accent); }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 

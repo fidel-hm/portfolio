@@ -12,7 +12,6 @@
   --accent: #ff4d2e;          /* the single playful accent */
   --accent-ink: #ffffff;      /* text on accent fills */
   --radius: 16px;             /* soft, friendly image corners */
-  --space-32: 32px;           /* tokens.css doesn't define 32; this page needs it */
 }
 
 /* ---- Page shell ---------------------------------------------------------- */
@@ -91,29 +90,6 @@
   border-radius: 999px;
   color: var(--color-text-muted);
 }
-
-/* ---- Kinetic marquee (full-bleed to the frame edges) --------------------- */
-.marquee {
-  margin-inline: calc(-1 * var(--page-margin-x));
-  overflow: hidden;
-  border-block: 1px solid var(--color-text);
-  padding-block: var(--space-16);
-}
-.marquee__track {
-  display: inline-flex;
-  white-space: nowrap;
-  will-change: transform;
-  animation: marquee 24s linear infinite;
-  font-size: clamp(36px, 6vw, 76px);
-  font-weight: var(--font-weight-bold);
-}
-.marquee__track span {
-  padding-inline: var(--space-32);
-  color: var(--color-text-muted);   /* solid glyphs — no outline strokes to cross/overlap */
-}
-.marquee__track .hot { color: var(--accent); }
-.marquee:hover .marquee__track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---- Asymmetric, staggered gallery --------------------------------------- */
 .gallery {
@@ -198,19 +174,17 @@
 
 /* ---- Reduced motion: calm everything down -------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .marquee__track { animation: none; }
   .kicker::before { animation: none; }
   .tile:hover .tile__media { transform: none; box-shadow: none; }
   .js .reveal { opacity: 1 !important; transform: none !important; }
 }
 
 /* ---- Responsive ---------------------------------------------------------- */
-@media (max-width: 1200px) { .canvas { padding-inline: 48px; } .marquee { margin-inline: -48px; } }
+@media (max-width: 1200px) { .canvas { padding-inline: 48px; } }
 
 @media (max-width: 900px) {
   .canvas { padding-inline: 24px; }
   .concept { gap: var(--space-64); }
-  .marquee { margin-inline: -24px; }
   .gallery { grid-template-columns: 1fr; }
   .tile { grid-column: 1 / -1 !important; margin-top: 0 !important; }
   .tile--1 .tile__media,

@@ -127,7 +127,7 @@ Same template, three instances (titles: "mono / poly", "inside / outside",
   (black)**, others muted.
 - Main column, section gap **56px**:
   1. **Intro**: title block (gap 24px) = headline 40px Bold + `SoSe 2026` (16px
-     muted), then body paragraph 16px / line-height 24px, **max width 520px**.
+     muted). _(The body description was removed per client — previously Lorem ipsum.)_
   2. **Single photo** (560px tall) + caption `Untitled · 01`.
   3. **Photo pair** (two 480px-tall photos) + captions `Untitled · 02`, `Untitled · 03`.
 

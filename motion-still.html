@@ -47,30 +47,20 @@
         </div>
       </div>
 
-      <!-- ASYMMETRIC GALLERY -->
+      <!-- GALLERY: two staggered "motion" frames, one wide "still" frame -->
       <section class="gallery">
-        <figure class="tile tile--a reveal">
+        <figure class="tile tile--1 reveal">
           <div class="tile__media"></div>
           <figcaption class="tile__cap"><span>loop</span><span class="num">01</span></figcaption>
         </figure>
-        <figure class="tile tile--b reveal">
+        <figure class="tile tile--2 reveal">
           <div class="tile__media"></div>
           <figcaption class="tile__cap"><span>hold</span><span class="num">02</span></figcaption>
         </figure>
-        <figure class="tile tile--c reveal">
+        <figure class="tile tile--3 reveal">
           <div class="tile__media"></div>
-          <figcaption class="tile__cap"><span>drift</span><span class="num">03</span></figcaption>
+          <figcaption class="tile__cap"><span>still</span><span class="num">03</span></figcaption>
         </figure>
-        <figure class="tile tile--d reveal">
-          <div class="tile__media"></div>
-          <figcaption class="tile__cap"><span>frame</span><span class="num">04</span></figcaption>
-        </figure>
-      </section>
-
-      <!-- STILL COUNTERPOINT -->
-      <section class="still reveal">
-        <div class="still__media"></div>
-        <figcaption class="tile__cap"><span>still</span><span class="num">05</span></figcaption>
       </section>
 
       <!-- NEXT -->
@@ -81,13 +71,10 @@
     </main>
   </div>
 
-  <div class="cursor" aria-hidden="true"></div>
-
   <script>
     (function () {
       var root = document.documentElement;
       var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var fine = matchMedia('(pointer: fine)').matches;
       root.classList.add('js');
 
       // Scroll-reveal
@@ -113,23 +100,6 @@
       }
       addEventListener('scroll', onScroll, { passive: true });
       onScroll();
-
-      // Custom cursor (fine pointer + no reduced motion)
-      if (fine && !reduce) {
-        root.classList.add('has-cursor');
-        var dot = document.querySelector('.cursor');
-        var x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
-        addEventListener('mousemove', function (e) { x = e.clientX; y = e.clientY; });
-        (function loop() {
-          cx += (x - cx) * 0.18; cy += (y - cy) * 0.18;
-          dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%, -50%)';
-          requestAnimationFrame(loop);
-        })();
-        document.querySelectorAll('a, .tile, .pill').forEach(function (el) {
-          el.addEventListener('mouseenter', function () { dot.classList.add('cursor--lg'); });
-          el.addEventListener('mouseleave', function () { dot.classList.remove('cursor--lg'); });
-        });
-      }
     })();
   </script>
 </body>

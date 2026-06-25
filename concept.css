@@ -82,14 +82,14 @@
 .hero__title .slash  { color: var(--color-text-muted); font-weight: var(--font-weight-regular); }
 
 .hero__meta { display: flex; flex-wrap: wrap; gap: var(--space-16); margin-top: var(--space-8); }
+/* Passive metadata labels — deliberately not interactive (no hover state) */
 .pill {
   font-size: var(--text-base);
   padding: var(--space-8) var(--space-16);
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--color-divider);
   border-radius: 999px;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  color: var(--color-text-muted);
 }
-.pill:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
 /* ---- Kinetic marquee (full-bleed to the frame edges) --------------------- */
 .marquee {
@@ -105,12 +105,12 @@
   animation: marquee 24s linear infinite;
   font-size: clamp(36px, 6vw, 76px);
   font-weight: var(--font-weight-bold);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.03em;   /* looser tracking so the outlines never collide */
 }
 .marquee__track span {
-  padding-inline: var(--space-24);
+  padding-inline: var(--space-32);
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--color-text);
+  -webkit-text-stroke: 1px var(--color-text);
 }
 .marquee__track .hot { -webkit-text-stroke-color: var(--accent); }
 .marquee:hover .marquee__track { animation-play-state: paused; }
@@ -145,24 +145,20 @@
 .tile__cap .num { color: var(--color-text-muted); transition: color 0.3s; }
 .tile:hover .tile__cap .num { color: var(--accent); }
 
-/* placement — loose diagonal cascade */
-.tile--a { grid-column: 1 / 8;  }
-.tile--a .tile__media { aspect-ratio: 4 / 5; }
-.tile--b { grid-column: 9 / 13; margin-top: var(--space-64); }
-.tile--b .tile__media { aspect-ratio: 3 / 4; }
-.tile--c { grid-column: 2 / 7;  margin-top: var(--space-24); }
-.tile--c .tile__media { aspect-ratio: 1 / 1; }
-.tile--d { grid-column: 7 / 13; margin-top: var(--space-64); }
-.tile--d .tile__media { aspect-ratio: 16 / 10; }
+/* placement — an intentional "motion → still" composition:
+   two staggered frames descend diagonally (the motion), then one wide,
+   grounded frame resolves the rhythm (the still). Fixed grid columns +
+   deliberate step offsets keep it composed rather than random. */
+.tile--1 { grid-column: 1 / 7; }
+.tile--1 .tile__media { aspect-ratio: 4 / 5; }
 
-/* ---- "Still" counterpoint: one calm, full-width frame -------------------- */
-.still { display: flex; flex-direction: column; gap: var(--space-16); }
-.still__media {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: var(--color-placeholder);
-  border-radius: var(--radius);
-}
+.tile--2 { grid-column: 8 / 13; margin-top: 112px; }
+.tile--2 .tile__media { aspect-ratio: 3 / 4; }
+
+.tile--3 { grid-column: 3 / 12; margin-top: var(--space-64); }
+.tile--3 .tile__media { aspect-ratio: 16 / 9; }
+/* the resolving "still" frame stays calm — a soft lift, no tilt */
+.tile--3:hover .tile__media { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.10); }
 
 /* ---- Next project -------------------------------------------------------- */
 .next {
@@ -193,32 +189,6 @@
 .next:hover .next__title { color: var(--accent); }
 .next:hover .next__arrow { transform: translateX(16px); }
 
-/* ---- Custom cursor (fine pointer + JS only) ------------------------------ */
-.cursor { display: none; }
-.has-cursor .cursor {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 50;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  pointer-events: none;
-  transition: width 0.25s, height 0.25s, background 0.25s, border-color 0.25s;
-}
-.has-cursor .cursor.cursor--lg {
-  width: 48px;
-  height: 48px;
-  background: transparent;
-  border: 1.5px solid var(--accent);
-}
-.has-cursor,
-.has-cursor a,
-.has-cursor .tile,
-.has-cursor .pill { cursor: none; }
-
 /* ---- Scroll reveal (only when JS is on; visible by default otherwise) ----- */
 .js .reveal {
   opacity: 0;
@@ -244,10 +214,9 @@
   .marquee { margin-inline: -24px; }
   .gallery { grid-template-columns: 1fr; }
   .tile { grid-column: 1 / -1 !important; margin-top: 0 !important; }
-  .tile--a .tile__media,
-  .tile--b .tile__media,
-  .tile--c .tile__media,
-  .tile--d .tile__media { aspect-ratio: 4 / 3; }
+  .tile--1 .tile__media,
+  .tile--2 .tile__media,
+  .tile--3 .tile__media { aspect-ratio: 4 / 3; }
 }
 
 @media (max-width: 560px) {

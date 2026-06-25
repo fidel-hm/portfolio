@@ -14,6 +14,7 @@ anchoring + responsive collapse) lives in [`site.css`](site.css).
 | `mono-poly.html` | Project detail — mono / poly |
 | `inside-outside.html` | Project detail — inside / outside |
 | `personal-public.html` | Project detail — personal / public |
+| `motion-still.html` | Project detail — motion / still (dynamic/playful design direction; styles in `concept.css`) |
 | `contact.html` | Contact (stub) |
 
 ## Run locally

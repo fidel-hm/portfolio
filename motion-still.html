@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidelis Müller — motion / still</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="concept.css">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <div class="canvas">
+    <header class="header">
+      <a class="header__logo" href="index.html">Fidelis Müller</a>
+      <nav class="nav">
+        <a class="nav__link nav__link--active" href="projects.html">Projects</a>
+        <a class="nav__link" href="index.html">About</a>
+        <a class="nav__link" href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="concept">
+      <!-- HERO -->
+      <section class="hero reveal">
+        <span class="kicker">Project 04 — Motion study</span>
+        <h1 class="hero__title">
+          <span class="accent">motion</span>
+          <span class="slash">/</span>
+          <span>still</span>
+        </h1>
+        <div class="hero__meta">
+          <span class="pill">SoSe 2026</span>
+          <span class="pill">Interaction</span>
+          <span class="pill">Motion</span>
+        </div>
+      </section>
+
+      <!-- KINETIC MARQUEE -->
+      <div class="marquee reveal" aria-hidden="true">
+        <div class="marquee__track">
+          <span>motion / still</span><span class="hot">✳</span><span>Fidelis Müller</span><span class="hot">✳</span><span>SoSe 2026</span><span class="hot">✳</span>
+          <span>motion / still</span><span class="hot">✳</span><span>Fidelis Müller</span><span class="hot">✳</span><span>SoSe 2026</span><span class="hot">✳</span>
+        </div>
+      </div>
+
+      <!-- ASYMMETRIC GALLERY -->
+      <section class="gallery">
+        <figure class="tile tile--a reveal">
+          <div class="tile__media"></div>
+          <figcaption class="tile__cap"><span>loop</span><span class="num">01</span></figcaption>
+        </figure>
+        <figure class="tile tile--b reveal">
+          <div class="tile__media"></div>
+          <figcaption class="tile__cap"><span>hold</span><span class="num">02</span></figcaption>
+        </figure>
+        <figure class="tile tile--c reveal">
+          <div class="tile__media"></div>
+          <figcaption class="tile__cap"><span>drift</span><span class="num">03</span></figcaption>
+        </figure>
+        <figure class="tile tile--d reveal">
+          <div class="tile__media"></div>
+          <figcaption class="tile__cap"><span>frame</span><span class="num">04</span></figcaption>
+        </figure>
+      </section>
+
+      <!-- STILL COUNTERPOINT -->
+      <section class="still reveal">
+        <div class="still__media"></div>
+        <figcaption class="tile__cap"><span>still</span><span class="num">05</span></figcaption>
+      </section>
+
+      <!-- NEXT -->
+      <a class="next reveal" href="inside-outside.html">
+        <span class="next__label">Next project</span>
+        <span class="next__title">inside / outside <span class="next__arrow">→</span></span>
+      </a>
+    </main>
+  </div>
+
+  <div class="cursor" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var fine = matchMedia('(pointer: fine)').matches;
+      root.classList.add('js');
+
+      // Scroll-reveal
+      var items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduce) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+        items.forEach(function (el) { io.observe(el); });
+      } else {
+        items.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      // Scroll progress bar
+      var bar = document.querySelector('.progress');
+      function onScroll() {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        var r = max > 0 ? h.scrollTop / max : 0;
+        bar.style.transform = 'scaleX(' + r + ')';
+      }
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Custom cursor (fine pointer + no reduced motion)
+      if (fine && !reduce) {
+        root.classList.add('has-cursor');
+        var dot = document.querySelector('.cursor');
+        var x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+        addEventListener('mousemove', function (e) { x = e.clientX; y = e.clientY; });
+        (function loop() {
+          cx += (x - cx) * 0.18; cy += (y - cy) * 0.18;
+          dot.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%, -50%)';
+          requestAnimationFrame(loop);
+        })();
+        document.querySelectorAll('a, .tile, .pill').forEach(function (el) {
+          el.addEventListener('mouseenter', function () { dot.classList.add('cursor--lg'); });
+          el.addEventListener('mouseleave', function () { dot.classList.remove('cursor--lg'); });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

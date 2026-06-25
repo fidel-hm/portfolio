@@ -1,0 +1,255 @@
+/* =============================================================================
+   Fidelis Müller Portfolio — "motion / still" concept page
+   A more dynamic / playful, yet still reduced direction. Self-contained:
+   builds on tokens.css (base reset, type, header, colors) and adds ONE warm
+   accent + kinetic detailing. Does NOT touch the other pages' styling.
+
+   Keeps the 8pt grid for spacing; type is fluid (clamp) by intent.
+   All motion is progressive enhancement and respects prefers-reduced-motion.
+   ============================================================================= */
+
+:root {
+  --accent: #ff4d2e;          /* the single playful accent */
+  --accent-ink: #ffffff;      /* text on accent fills */
+  --radius: 16px;             /* soft, friendly image corners */
+}
+
+/* ---- Page shell ---------------------------------------------------------- */
+.canvas {
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: 40px var(--page-margin-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+  min-height: 100vh;
+}
+.concept {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;            /* 12 × 8 */
+  padding-top: var(--space-24);
+}
+
+/* Scroll progress bar (thin accent line at the very top) */
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 60;
+}
+
+/* ---- Hero ---------------------------------------------------------------- */
+.hero { display: flex; flex-direction: column; gap: var(--space-24); }
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--text-base);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%      { transform: scale(1.7); opacity: 0.45;}
+}
+
+.hero__title {
+  margin: 0;
+  font-weight: var(--font-weight-bold);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  font-size: clamp(56px, 10vw, 132px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.22em;
+}
+.hero__title .accent { color: var(--accent); }
+.hero__title .slash  { color: var(--color-text-muted); font-weight: var(--font-weight-regular); }
+
+.hero__meta { display: flex; flex-wrap: wrap; gap: var(--space-16); margin-top: var(--space-8); }
+.pill {
+  font-size: var(--text-base);
+  padding: var(--space-8) var(--space-16);
+  border: 1px solid var(--color-text);
+  border-radius: 999px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.pill:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* ---- Kinetic marquee (full-bleed to the frame edges) --------------------- */
+.marquee {
+  margin-inline: calc(-1 * var(--page-margin-x));
+  overflow: hidden;
+  border-block: 1px solid var(--color-text);
+  padding-block: var(--space-16);
+}
+.marquee__track {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 24s linear infinite;
+  font-size: clamp(36px, 6vw, 76px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+}
+.marquee__track span {
+  padding-inline: var(--space-24);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-text);
+}
+.marquee__track .hot { -webkit-text-stroke-color: var(--accent); }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---- Asymmetric, staggered gallery --------------------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-24);
+  align-items: start;
+}
+.tile { margin: 0; }
+.tile__media {
+  width: 100%;
+  background: var(--color-placeholder);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.55s;
+}
+.tile:hover .tile__media {
+  transform: translateY(-8px) scale(1.015) rotate(-0.6deg);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+.tile__cap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-16);
+  font-size: var(--text-base);
+}
+.tile__cap .num { color: var(--color-text-muted); transition: color 0.3s; }
+.tile:hover .tile__cap .num { color: var(--accent); }
+
+/* placement — loose diagonal cascade */
+.tile--a { grid-column: 1 / 8;  }
+.tile--a .tile__media { aspect-ratio: 4 / 5; }
+.tile--b { grid-column: 9 / 13; margin-top: var(--space-64); }
+.tile--b .tile__media { aspect-ratio: 3 / 4; }
+.tile--c { grid-column: 2 / 7;  margin-top: var(--space-24); }
+.tile--c .tile__media { aspect-ratio: 1 / 1; }
+.tile--d { grid-column: 7 / 13; margin-top: var(--space-64); }
+.tile--d .tile__media { aspect-ratio: 16 / 10; }
+
+/* ---- "Still" counterpoint: one calm, full-width frame -------------------- */
+.still { display: flex; flex-direction: column; gap: var(--space-16); }
+.still__media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-placeholder);
+  border-radius: var(--radius);
+}
+
+/* ---- Next project -------------------------------------------------------- */
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  text-decoration: none;
+  color: var(--color-text);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--color-text);
+}
+.next__label {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.next__title {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  transition: color 0.3s;
+}
+.next__arrow { display: inline-block; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.next:hover .next__title { color: var(--accent); }
+.next:hover .next__arrow { transform: translateX(16px); }
+
+/* ---- Custom cursor (fine pointer + JS only) ------------------------------ */
+.cursor { display: none; }
+.has-cursor .cursor {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  transition: width 0.25s, height 0.25s, background 0.25s, border-color 0.25s;
+}
+.has-cursor .cursor.cursor--lg {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1.5px solid var(--accent);
+}
+.has-cursor,
+.has-cursor a,
+.has-cursor .tile,
+.has-cursor .pill { cursor: none; }
+
+/* ---- Scroll reveal (only when JS is on; visible by default otherwise) ----- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ---- Reduced motion: calm everything down -------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  .kicker::before { animation: none; }
+  .tile:hover .tile__media { transform: none; box-shadow: none; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width: 1200px) { .canvas { padding-inline: 48px; } .marquee { margin-inline: -48px; } }
+
+@media (max-width: 900px) {
+  .canvas { padding-inline: 24px; }
+  .concept { gap: var(--space-64); }
+  .marquee { margin-inline: -24px; }
+  .gallery { grid-template-columns: 1fr; }
+  .tile { grid-column: 1 / -1 !important; margin-top: 0 !important; }
+  .tile--a .tile__media,
+  .tile--b .tile__media,
+  .tile--c .tile__media,
+  .tile--d .tile__media { aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 560px) {
+  .header { flex-wrap: wrap; gap: var(--space-16); }
+}

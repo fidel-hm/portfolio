@@ -1,0 +1,107 @@
+/* =============================================================================
+   FidelMu Portfolio — site-specific layout
+   Builds on tokens.css. Keeps tokens.css as the pure 1:1 Figma source of truth;
+   everything here is the art-directed home wall + responsive behaviour that the
+   Figma (desktop-only) does not specify.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Home — scattered / staggered "project wall"
+   Desktop: absolutely-placed teasers in a loose diagonal cascade, approximating
+   the hand-placed Figma frame (one ~285 top-left, one ~590 stepped down-right,
+   one ~488 stepped further down-right).
+   ----------------------------------------------------------------------------- */
+.project-wall {
+  position: relative;
+  width: 100%;
+  /* tall enough to contain the absolutely-positioned cascade */
+  min-height: 980px;
+}
+
+.project-wall .project-teaser {
+  position: absolute;
+}
+
+.project-wall .project-teaser--1 {
+  left: 0;
+  top: 0;
+  width: 285px;
+}
+.project-wall .project-teaser--1 .project-teaser__image { height: 300px; }
+
+.project-wall .project-teaser--2 {
+  left: 360px;
+  top: 150px;
+  width: 590px;
+}
+.project-wall .project-teaser--2 .project-teaser__image { height: 380px; }
+
+.project-wall .project-teaser--3 {
+  left: 620px;
+  top: 600px;
+  width: 488px;
+}
+.project-wall .project-teaser--3 .project-teaser__image { height: 320px; }
+
+/* make teasers feel clickable */
+a.project-teaser { text-decoration: none; color: inherit; }
+a.project-teaser:hover .project-teaser__image { opacity: 0.92; }
+
+/* -----------------------------------------------------------------------------
+   Stub pages (Contact / Start) — header only, friendly placeholder note
+   ----------------------------------------------------------------------------- */
+.stub {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-16);
+}
+.stub__note { color: var(--color-text-muted); }
+
+/* -----------------------------------------------------------------------------
+   Responsive — the Figma is desktop-only (1440). Below the content width we
+   gracefully collapse: single-column body, stacked home wall.
+   ----------------------------------------------------------------------------- */
+
+/* Tablet / small desktop: shrink the page gutters so 1200 content still fits */
+@media (max-width: 1200px) {
+  .page { padding-inline: 48px; }
+}
+
+@media (max-width: 900px) {
+  .page { padding-inline: 24px; gap: var(--space-48); }
+
+  /* Body: drop the vertical divider, stack sidebar above main */
+  .body-grid {
+    flex-direction: column;
+    gap: var(--space-48);
+  }
+  .body-grid .divider { display: none; }
+  .sidebar,
+  .about-images {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  /* sidebar menu no longer needs vertical centering when stacked */
+  .project-menu { height: auto; justify-content: flex-start; }
+
+  /* About mirror collapses too: text first, images after */
+  .about-images { order: 2; }
+
+  /* Photo pair stacks */
+  .photo-pair { flex-direction: column; }
+
+  /* Home wall: abandon absolute cascade, stack the teasers */
+  .project-wall { min-height: 0; display: flex; flex-direction: column; gap: var(--space-48); }
+  .project-wall .project-teaser {
+    position: static;
+    width: 100% !important;
+  }
+  .project-wall .project-teaser__image { height: 320px !important; }
+}
+
+@media (max-width: 560px) {
+  .title { font-size: 32px; }
+  .header { flex-direction: column; align-items: flex-start; gap: var(--space-16); }
+}

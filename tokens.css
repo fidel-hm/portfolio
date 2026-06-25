@@ -1,0 +1,249 @@
+/* =============================================================================
+   FidelMu Portfolio — Design Tokens & Layout Primitives
+   Extracted 1:1 from Figma (file vNpf36PUFegGWv0P5jliZZ).
+   Desktop reference frame: 1440px wide.
+
+   These values are the source of truth. Adapt the *syntax* to your stack
+   (CSS Modules, Tailwind config, styled-components, etc.) but keep the values.
+   ============================================================================= */
+
+:root {
+  /* ---- Color ------------------------------------------------------------- */
+  --color-bg: #f5f5f5;          /* page background */
+  --color-text: #000000;        /* primary text, active nav/menu items */
+  --color-text-muted: #999999;  /* inactive nav/menu items, caption numbers, subtitles */
+  --color-placeholder: #d9d9d9; /* image placeholder boxes */
+  --color-divider: #d9d9d9;     /* vertical hairline divider */
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Type scale (px values exactly as in Figma) */
+  --text-title: 40px;   /* h1 / page + project titles — Bold */
+  --text-lg: 20px;      /* logo, nav, sidebar menu, overview subtitle — Regular (logo Bold) */
+  --text-base: 16px;    /* body copy, captions, project "SoSe 2026" subtitle — Regular */
+
+  --leading-title: 1.2;   /* "normal" in Figma */
+  --leading-body: 1.5;    /* 24px line-height on 16px body */
+  --leading-normal: 1.2;  /* nav, captions, titles use Figma "normal" */
+
+  /* ---- Spacing scale (8px base) ----------------------------------------- */
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+
+  /* ---- Page layout ------------------------------------------------------- */
+  --canvas-width: 1440px;        /* design frame width */
+  --page-margin-x: 120px;        /* left/right page padding */
+  --page-padding-y: 56px;        /* top/bottom page padding (developed pages) */
+  --content-max-width: 1200px;   /* 1440 - 2*120 */
+
+  /* ---- Body grid (sidebar + divider + main) ----------------------------- */
+  --sidebar-width: 280px;
+  --body-gap: 64px;              /* gap between sidebar / divider / main */
+  --divider-width: 1px;
+
+  /* ---- Photo / media ----------------------------------------------------- */
+  --photo-single-height: 560px;  /* full-width photo on project pages */
+  --photo-pair-height: 480px;    /* each photo in a side-by-side pair */
+  --photo-pair-gap: 24px;
+  --about-image-height: 420px;   /* about-page image column */
+}
+
+/* =============================================================================
+   Base
+   ============================================================================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =============================================================================
+   Typography helpers
+   ============================================================================= */
+.title {           /* page / project headline */
+  font-size: var(--text-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-title);
+  margin: 0;
+}
+
+.subtitle {        /* e.g. "Christoph Noe" (black) */
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-regular);
+}
+
+.meta {            /* muted secondary text, e.g. "SoSe 2026" */
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+
+.body-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  max-width: 560px; /* matches the running-text column width in Figma */
+}
+
+/* =============================================================================
+   Layout primitives — drop-in, pixel-accurate to Figma
+   ============================================================================= */
+
+/* Page shell: centered 1440 frame, 120px side gutters */
+.page {
+  max-width: var(--canvas-width);
+  margin-inline: auto;
+  padding: var(--page-padding-y) var(--page-margin-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+  min-height: 100vh;
+}
+
+/* Header: logo left, nav right */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-lg);
+}
+.header__logo {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.nav {
+  display: flex;
+  gap: var(--space-24);
+}
+.nav__link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.nav__link--active,
+.nav__link:hover {
+  color: var(--color-text);
+}
+
+/* Body: sidebar | hairline divider | main column */
+.body-grid {
+  display: flex;
+  gap: var(--body-gap);
+  align-items: stretch;
+  flex: 1;
+}
+.sidebar {
+  flex: 0 0 var(--sidebar-width);
+  width: var(--sidebar-width);
+}
+.divider {
+  flex: 0 0 var(--divider-width);
+  width: var(--divider-width);
+  background: var(--color-divider);
+  align-self: stretch;
+}
+.main {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-56);
+}
+
+/* Sidebar project menu (vertical, centered) */
+.project-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  justify-content: center;
+  height: 100%;
+  font-size: var(--text-lg);
+}
+.project-menu__item {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.project-menu__item--active,
+.project-menu__item:hover {
+  color: var(--color-text);
+}
+
+/* Single full-width photo + caption */
+.photo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  width: 100%;
+}
+.photo__image {
+  width: 100%;
+  height: var(--photo-single-height);
+  background: var(--color-placeholder);
+}
+
+/* Two photos side by side */
+.photo-pair {
+  display: flex;
+  gap: var(--photo-pair-gap);
+  width: 100%;
+}
+.photo-pair .photo { flex: 1 1 0; min-width: 0; }
+.photo-pair .photo__image { height: var(--photo-pair-height); }
+
+/* Caption row: label left (black), index right (muted) */
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-base);
+  width: 100%;
+}
+.caption__index { color: var(--color-text-muted); }
+
+/* About page: narrow image column on the right */
+.about-images {
+  flex: 0 0 var(--sidebar-width);
+  width: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+.about-images__image {
+  width: 100%;
+  height: var(--about-image-height);
+  background: var(--color-placeholder);
+}
+
+/* Home: scattered / staggered project wall.
+   The Figma places teasers at varying sizes and offsets (asymmetric).
+   Treat this as an art-directed layout, not a uniform grid. */
+.project-teaser {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+.project-teaser__image {
+  width: 100%;
+  background: var(--color-placeholder);
+}
+.project-teaser__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-lg);
+}

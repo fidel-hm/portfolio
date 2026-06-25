@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FidelMu — inside / outside</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <a class="header__logo" href="index.html">FidelMu</a>
+      <nav class="nav">
+        <a class="nav__link nav__link--active" href="projects.html">Projects</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <div class="body-grid">
+      <nav class="sidebar">
+        <div class="project-menu">
+          <a class="project-menu__item" href="mono-poly.html">mono / poly</a>
+          <a class="project-menu__item project-menu__item--active" href="inside-outside.html">inside / outside</a>
+          <a class="project-menu__item" href="personal-public.html">personal / public</a>
+        </div>
+      </nav>
+
+      <div class="divider"></div>
+
+      <main class="main">
+        <section class="intro" style="display: flex; flex-direction: column; gap: var(--space-24);">
+          <div style="display: flex; flex-direction: column; gap: var(--space-24);">
+            <h1 class="title">inside / outside</h1>
+            <p class="meta" style="margin: 0;">SoSe 2026</p>
+          </div>
+          <p class="body-text" style="max-width: 520px; margin: 0;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+          </p>
+        </section>
+
+        <figure class="photo" style="margin: 0;">
+          <div class="photo__image"></div>
+          <figcaption class="caption">
+            <span>Untitled</span>
+            <span class="caption__index">01</span>
+          </figcaption>
+        </figure>
+
+        <div class="photo-pair">
+          <figure class="photo" style="margin: 0;">
+            <div class="photo__image"></div>
+            <figcaption class="caption">
+              <span>Untitled</span>
+              <span class="caption__index">02</span>
+            </figcaption>
+          </figure>
+          <figure class="photo" style="margin: 0;">
+            <div class="photo__image"></div>
+            <figcaption class="caption">
+              <span>Untitled</span>
+              <span class="caption__index">03</span>
+            </figcaption>
+          </figure>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -2,8 +2,25 @@
    Fidelis Müller Portfolio — site-specific layout
    Builds on tokens.css. tokens.css stays the pure 1:1 Figma source of truth;
    everything here is behaviour the Figma (desktop-only) does not specify:
-   the project-menu anchoring and the responsive collapse.
+   the compact scaling, the project-menu anchoring and the responsive collapse.
    ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Compact scaling — tighten the vertical rhythm and shrink the media so the
+   first project image is fully visible above the fold without scrolling on a
+   typical laptop viewport. These override tokens.css values; tokens.css stays
+   the pristine 1:1 Figma reference (original values noted below).
+   ----------------------------------------------------------------------------- */
+:root {
+  --space-32: 32px;              /* fills the 8px-base gaps in the 24→48 range */
+  --space-40: 40px;
+  --page-padding-y: 40px;        /* was 56 — top/bottom page padding */
+  --photo-single-height: 400px;  /* was 560 — hero photo on project pages */
+  --photo-pair-height: 380px;    /* was 480 — each photo in a side-by-side pair */
+  --about-image-height: 360px;   /* was 420 — about-page image column */
+}
+.page { gap: var(--space-32); }  /* header → body rhythm, was --space-64 */
+.main { gap: var(--space-40); }  /* section gap inside main, was --space-56 */
 
 /* -----------------------------------------------------------------------------
    Project sidebar menu — same vertical position on overview AND detail pages.
@@ -16,12 +33,12 @@
    Fix: don't let the sidebar stretch with the tall main column. Give it a
    fixed, viewport-derived height instead, so the menu is centered against the
    same reference everywhere and lands in an identical spot on every project
-   page. (200px ≈ top/bottom page padding 56+56 + header ~24 + header→body gap
-   64.) The 1px divider keeps its own `align-self: stretch`, so it still spans
-   the full (tall) body row.
+   page. (136px ≈ top/bottom page padding 40+40 + header ~24 + header→body gap
+   32, matching the compact scaling above.) The 1px divider keeps its own
+   `align-self: stretch`, so it still spans the full (tall) body row.
    ----------------------------------------------------------------------------- */
 .body-grid { align-items: flex-start; }
-.sidebar { height: calc(100vh - 200px); }
+.sidebar { height: calc(100vh - 136px); }
 
 /* -----------------------------------------------------------------------------
    Stub pages (Contact) — header only, friendly placeholder note

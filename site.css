@@ -1,54 +1,30 @@
 /* =============================================================================
-   FidelMu Portfolio — site-specific layout
-   Builds on tokens.css. Keeps tokens.css as the pure 1:1 Figma source of truth;
-   everything here is the art-directed home wall + responsive behaviour that the
-   Figma (desktop-only) does not specify.
+   Fidelis Müller Portfolio — site-specific layout
+   Builds on tokens.css. tokens.css stays the pure 1:1 Figma source of truth;
+   everything here is behaviour the Figma (desktop-only) does not specify:
+   the project-menu anchoring and the responsive collapse.
    ============================================================================= */
 
 /* -----------------------------------------------------------------------------
-   Home — scattered / staggered "project wall"
-   Desktop: absolutely-placed teasers in a loose diagonal cascade, approximating
-   the hand-placed Figma frame (one ~285 top-left, one ~590 stepped down-right,
-   one ~488 stepped further down-right).
+   Project sidebar menu — same vertical position on overview AND detail pages.
+
+   tokens.css centers the menu inside the body row (`height: 100%` +
+   `justify-content: center`). That body row is roughly viewport-tall on the
+   overview (short content) but grows very tall on detail pages (full-height
+   photos), which pushed the centered menu far down.
+
+   Fix: don't let the sidebar stretch with the tall main column. Give it a
+   fixed, viewport-derived height instead, so the menu is centered against the
+   same reference everywhere and lands in an identical spot on every project
+   page. (200px ≈ top/bottom page padding 56+56 + header ~24 + header→body gap
+   64.) The 1px divider keeps its own `align-self: stretch`, so it still spans
+   the full (tall) body row.
    ----------------------------------------------------------------------------- */
-.project-wall {
-  position: relative;
-  width: 100%;
-  /* tall enough to contain the absolutely-positioned cascade */
-  min-height: 980px;
-}
-
-.project-wall .project-teaser {
-  position: absolute;
-}
-
-.project-wall .project-teaser--1 {
-  left: 0;
-  top: 0;
-  width: 285px;
-}
-.project-wall .project-teaser--1 .project-teaser__image { height: 300px; }
-
-.project-wall .project-teaser--2 {
-  left: 360px;
-  top: 150px;
-  width: 590px;
-}
-.project-wall .project-teaser--2 .project-teaser__image { height: 380px; }
-
-.project-wall .project-teaser--3 {
-  left: 620px;
-  top: 600px;
-  width: 488px;
-}
-.project-wall .project-teaser--3 .project-teaser__image { height: 320px; }
-
-/* make teasers feel clickable */
-a.project-teaser { text-decoration: none; color: inherit; }
-a.project-teaser:hover .project-teaser__image { opacity: 0.92; }
+.body-grid { align-items: flex-start; }
+.sidebar { height: calc(100vh - 200px); }
 
 /* -----------------------------------------------------------------------------
-   Stub pages (Contact / Start) — header only, friendly placeholder note
+   Stub pages (Contact) — header only, friendly placeholder note
    ----------------------------------------------------------------------------- */
 .stub {
   flex: 1;
@@ -61,7 +37,7 @@ a.project-teaser:hover .project-teaser__image { opacity: 0.92; }
 
 /* -----------------------------------------------------------------------------
    Responsive — the Figma is desktop-only (1440). Below the content width we
-   gracefully collapse: single-column body, stacked home wall.
+   gracefully collapse to a single-column body.
    ----------------------------------------------------------------------------- */
 
 /* Tablet / small desktop: shrink the page gutters so 1200 content still fits */
@@ -82,6 +58,7 @@ a.project-teaser:hover .project-teaser__image { opacity: 0.92; }
   .about-images {
     flex: 1 1 auto;
     width: 100%;
+    height: auto;
   }
   /* sidebar menu no longer needs vertical centering when stacked */
   .project-menu { height: auto; justify-content: flex-start; }
@@ -91,14 +68,6 @@ a.project-teaser:hover .project-teaser__image { opacity: 0.92; }
 
   /* Photo pair stacks */
   .photo-pair { flex-direction: column; }
-
-  /* Home wall: abandon absolute cascade, stack the teasers */
-  .project-wall { min-height: 0; display: flex; flex-direction: column; gap: var(--space-48); }
-  .project-wall .project-teaser {
-    position: static;
-    width: 100% !important;
-  }
-  .project-wall .project-teaser__image { height: 320px !important; }
 }
 
 @media (max-width: 560px) {

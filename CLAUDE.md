@@ -13,8 +13,14 @@ The Figma is **desktop-only (1440px frame)**. Build desktop-first; responsive
 behavior is not designed yet (see *Open questions* at the bottom).
 
 > **Current build:** plain static HTML/CSS (no build step), deployed via GitHub
-> Pages. Tokens live in `tokens.css` (1:1 from Figma); art-directed home wall and
-> responsive behaviour live in `site.css`.
+> Pages. Tokens live in `tokens.css` (1:1 from Figma); site-specific behaviour
+> (project-menu anchoring + responsive collapse) lives in `site.css`.
+>
+> **Deviations from the Figma (intentional, per client):**
+> - Header logo reads **"Fidelis Müller"** (Figma shows "FidelMu").
+> - The **start page is About** (`index.html`). The Figma "Portfolio Home (1st)"
+>   scattered project-wall was an early draft and has been dropped.
+> - Projects are reached via the **Projects** nav → overview → sidebar menu.
 
 ---
 

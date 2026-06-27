@@ -70,6 +70,33 @@
 .project-switch__item--active { color: var(--color-text); }
 .project-switch__item--active .project-switch__num { color: var(--accent); }
 
+/* On wider screens, move the switcher to a narrow vertical rail pinned to the
+   left edge (like a side taskbar). Project names are set vertically; the page
+   content is shifted right to clear it. */
+@media (min-width: 901px) {
+  body { padding-left: 64px; }                /* reserve the rail's column */
+  .project-switch {
+    position: fixed;
+    inset: 0 auto 0 0;                         /* full-height strip at the left */
+    width: 64px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-32);
+    padding: var(--space-24) 0;
+    background: var(--color-bg);
+    border-bottom: none;
+    border-right: 1px solid var(--color-divider);
+  }
+  .project-switch__item {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+  .project-switch__item > span:last-child { writing-mode: vertical-rl; }  /* the name, rotated */
+}
+
 /* ---- Hero ---------------------------------------------------------------- */
 .hero { display: flex; flex-direction: column; gap: 20px; }
 

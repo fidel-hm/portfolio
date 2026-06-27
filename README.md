@@ -13,9 +13,9 @@ arranges its own media layout. Photos go in [`images/`](images/) (see its README
 | File | Page |
 |---|---|
 | `index.html` | About (start page) |
-| `projects.html` | Projects overview (hub + sidebar project menu) |
+| `projects.html` | Projects overview (concept hub — hero + teaser index of all projects) |
 | `mono-poly.html` | Project 01 — mono / poly (2 verticals + 2 panoramas) |
-| `inside-outside.html` | Project 02 — inside / outside (2 full-height images) |
+| `inside-outside.html` | Project 02 — inside / outside (2 verticals, side by side) |
 | `showoff-understatement.html` | Project 03 — showoff / understatement (2 verticals) |
 | `contact.html` | Contact (stub) |
 

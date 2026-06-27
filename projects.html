@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FidelMu — Projects</title>
+  <title>Fidelis Müller — Projects</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="concept.css">
 </head>
 <body>
-  <div class="page">
+  <div class="progress" aria-hidden="true"></div>
+
+  <div class="canvas">
     <header class="header">
       <a class="header__logo" href="index.html">Fidelis Müller</a>
       <nav class="nav">
@@ -21,33 +23,43 @@
       </nav>
     </header>
 
-    <div class="body-grid">
-      <nav class="sidebar">
-        <div class="project-menu">
-          <a class="project-menu__item" href="mono-poly.html">mono / poly</a>
-          <a class="project-menu__item" href="inside-outside.html">inside / outside</a>
-          <a class="project-menu__item" href="showoff-understatement.html">showoff / understatement</a>
-        </div>
-      </nav>
+    <main class="concept">
+      <section class="hero reveal">
+        <span class="kicker">Sommersemester 2026</span>
+        <h1 class="hero__title">
+          <span class="accent">Kuration</span>
+        </h1>
+        <p class="hero__sub">Christoph Noe · drei Projekte</p>
+      </section>
 
-      <div class="divider"></div>
+      <section class="index">
+        <a class="teaser reveal" href="mono-poly.html">
+          <div class="teaser__frame"><img class="teaser__img" src="images/mono-poly/01.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="teaser__row">
+            <h2 class="teaser__title"><span class="accent">mono</span> <span class="slash">/</span> poly</h2>
+            <span class="teaser__num">01</span>
+          </div>
+        </a>
 
-      <main class="main" style="gap: var(--space-48);">
-        <div style="display: flex; flex-direction: column; gap: var(--space-8);">
-          <h1 class="title">Kuration SoSe 26</h1>
-          <p class="subtitle" style="margin: 0;">Christoph Noe</p>
-        </div>
-        <p class="body-text" style="max-width: none; margin: 0;">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-      </main>
-    </div>
+        <a class="teaser reveal" href="inside-outside.html">
+          <div class="teaser__frame"><img class="teaser__img" src="images/inside-outside/01.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="teaser__row">
+            <h2 class="teaser__title"><span class="accent">inside</span> <span class="slash">/</span> outside</h2>
+            <span class="teaser__num">02</span>
+          </div>
+        </a>
+
+        <a class="teaser reveal" href="showoff-understatement.html">
+          <div class="teaser__frame"><img class="teaser__img" src="images/showoff-understatement/01.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="teaser__row">
+            <h2 class="teaser__title"><span class="accent">showoff</span> <span class="slash">/</span> understatement</h2>
+            <span class="teaser__num">03</span>
+          </div>
+        </a>
+      </section>
+    </main>
   </div>
+
+  <script src="concept.js"></script>
 </body>
 </html>

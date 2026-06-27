@@ -116,49 +116,46 @@
   color: var(--color-text-muted);
 }
 
-/* ---- Asymmetric, staggered gallery --------------------------------------- */
+/* ---- Media galleries ----------------------------------------------------- */
+/* Each project composes a few media frames. A frame is an image box (with a grey
+   placeholder behind, so it still looks fine before the real photo is dropped in)
+   plus a caption. Layout/size variants below; each project arranges them in HTML. */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--space-24);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
 }
-.tile { margin: 0; }
-.tile__media {
+/* two frames side by side (e.g. a pair of verticals) */
+.media-pair { display: flex; gap: var(--space-24); }
+.media-pair > .media { flex: 1 1 0; min-width: 0; }
+
+.media { margin: 0; display: flex; flex-direction: column; gap: var(--space-16); }
+.media__frame {
   width: 100%;
   background: var(--color-placeholder);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.55s;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s;
 }
-.tile:hover .tile__media {
-  transform: translateY(-8px) scale(1.015) rotate(-0.6deg);
+.media__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.media:hover .media__frame {
+  transform: translateY(-6px);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
 }
-.tile__cap {
+.media__cap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--space-16);
   font-size: var(--text-base);
 }
-.tile__cap .num { color: var(--color-text-muted); transition: color 0.3s; }
-.tile:hover .tile__cap .num { color: var(--accent); }
+.media__cap .num { color: var(--color-text-muted); transition: color 0.3s; }
+.media:hover .media__cap .num { color: var(--accent); }
 
-/* placement — an intentional "motion → still" composition:
-   two staggered frames descend diagonally (the motion), then one wide,
-   grounded frame resolves the rhythm (the still). Fixed grid columns +
-   deliberate step offsets keep it composed rather than random. */
-.tile--1 { grid-column: 1 / 7; }
-.tile--1 .tile__media { aspect-ratio: 4 / 5; }
-
-.tile--2 { grid-column: 8 / 13; margin-top: 112px; }
-.tile--2 .tile__media { aspect-ratio: 3 / 4; }
-
-.tile--3 { grid-column: 3 / 12; margin-top: var(--space-64); }
-.tile--3 .tile__media { aspect-ratio: 16 / 9; }
-/* the resolving "still" frame stays calm — a soft lift, no tilt */
-.tile--3:hover .tile__media { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.10); }
+/* size / aspect variants */
+.media--portrait .media__frame { aspect-ratio: 3 / 4; }    /* vertical photo */
+.media--pano     .media__frame { aspect-ratio: 21 / 9; }   /* horizontal panorama */
+.media--full     .media__frame { height: 100vh; height: 100svh; }  /* fills the screen height */
+.media--full:hover .media__frame { transform: none; box-shadow: none; }
 
 /* ---- Next project -------------------------------------------------------- */
 .next {
@@ -200,7 +197,7 @@
 /* ---- Reduced motion: calm everything down -------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .kicker::before { animation: none; }
-  .tile:hover .tile__media { transform: none; box-shadow: none; }
+  .media:hover .media__frame { transform: none; box-shadow: none; }
   .js .reveal { opacity: 1 !important; transform: none !important; }
 }
 
@@ -210,11 +207,7 @@
 @media (max-width: 900px) {
   .canvas { padding-inline: 24px; }
   .concept { gap: var(--space-64); }
-  .gallery { grid-template-columns: 1fr; }
-  .tile { grid-column: 1 / -1 !important; margin-top: 0 !important; }
-  .tile--1 .tile__media,
-  .tile--2 .tile__media,
-  .tile--3 .tile__media { aspect-ratio: 4 / 3; }
+  .media-pair { flex-direction: column; }  /* side-by-side pairs stack */
 }
 
 @media (max-width: 560px) {

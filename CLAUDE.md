@@ -30,6 +30,11 @@ behavior is not designed yet (see *Open questions* at the bottom).
 >   Figma sidebar + single/pair-photo layout. Each project page has a **sticky top
 >   project switcher** (`.project-switch`) to jump between projects; the original
 >   vertical sidebar menu remains on the overview (`projects.html`).
+> - **Three projects** now: `mono / poly`, `inside / outside`, and
+>   `showoff / understatement` (renamed from the Figma's `personal / public`). The
+>   exploratory `motion / still` demo was removed. Each project arranges its own
+>   media layout (vertical pair / panoramas / full-height) and pulls photos from
+>   `images/<project>/` (grey placeholder shown until a file exists).
 
 ---
 

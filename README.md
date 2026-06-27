@@ -3,9 +3,10 @@
 A desktop-first portfolio site built as plain static HTML/CSS (no build step) from
 the Figma design spec in [`CLAUDE.md`](CLAUDE.md). Design tokens live in
 [`tokens.css`](tokens.css) (1:1 from Figma); site-specific behaviour (project-menu
-anchoring + responsive collapse) lives in [`site.css`](site.css). All four project
+anchoring + responsive collapse) lives in [`site.css`](site.css). The three project
 detail pages share one expressive "concept" template — styles in
-[`concept.css`](concept.css), behaviour in [`concept.js`](concept.js).
+[`concept.css`](concept.css), behaviour in [`concept.js`](concept.js) — but each
+arranges its own media layout. Photos go in [`images/`](images/) (see its README).
 
 ## Pages
 
@@ -13,10 +14,9 @@ detail pages share one expressive "concept" template — styles in
 |---|---|
 | `index.html` | About (start page) |
 | `projects.html` | Projects overview (hub + sidebar project menu) |
-| `mono-poly.html` | Project 01 — mono / poly (concept template) |
-| `inside-outside.html` | Project 02 — inside / outside (concept template) |
-| `personal-public.html` | Project 03 — personal / public (concept template) |
-| `motion-still.html` | Project 04 — motion / still (concept template) |
+| `mono-poly.html` | Project 01 — mono / poly (2 verticals + 2 panoramas) |
+| `inside-outside.html` | Project 02 — inside / outside (2 full-height images) |
+| `showoff-understatement.html` | Project 03 — showoff / understatement (2 verticals) |
 | `contact.html` | Contact (stub) |
 
 ## Run locally

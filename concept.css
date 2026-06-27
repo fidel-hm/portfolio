@@ -154,7 +154,19 @@
 /* size / aspect variants */
 .media--portrait .media__frame { aspect-ratio: 3 / 4; }    /* vertical photo */
 .media--pano     .media__frame { aspect-ratio: 21 / 9; }   /* horizontal panorama */
-.media--full     .media__frame { height: 100vh; height: 100svh; }  /* fills the screen height */
+/* full-height: show the whole photo as tall as the screen, centered, never
+   cropped or distorted (scales down to fit; works for portrait or landscape). */
+.media--full { align-items: center; }
+.media--full .media__frame { width: fit-content; max-width: 100%; background: none; }
+.media--full .media__img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100vh;
+  max-height: 100svh;
+  object-fit: contain;
+}
+.media--full .media__cap { justify-content: center; gap: var(--space-24); }
 .media--full:hover .media__frame { transform: none; box-shadow: none; }
 
 /* ---- Next project -------------------------------------------------------- */
@@ -208,6 +220,10 @@
   .canvas { padding-inline: 24px; }
   .concept { gap: var(--space-64); }
   .media-pair { flex-direction: column; }  /* side-by-side pairs stack */
+  /* full-height images become normal full-width on small screens */
+  .media--full { align-items: stretch; }
+  .media--full .media__frame { width: 100%; }
+  .media--full .media__img { max-height: none; }
 }
 
 @media (max-width: 560px) {

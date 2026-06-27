@@ -24,8 +24,9 @@ behavior is not designed yet (see *Open questions* at the bottom).
 > - The **project detail pages now use a new full-width "concept" template**
 >   (accent-split title + 3-image asymmetric gallery + "next project" link;
 >   styles in `concept.css`, behaviour in `concept.js`) instead of the original
->   Figma sidebar + single/pair-photo layout. The sidebar project menu now lives
->   only on the overview (`projects.html`).
+>   Figma sidebar + single/pair-photo layout. Each project page has a **sticky top
+>   project switcher** (`.project-switch`) to jump between projects; the original
+>   vertical sidebar menu remains on the overview (`projects.html`).
 
 ---
 

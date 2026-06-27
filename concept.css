@@ -42,6 +42,34 @@
   z-index: 60;
 }
 
+/* ---- Sticky project switcher -------------------------------------------- */
+/* Always-available index of all projects; sticks to the top on scroll so you
+   can jump between projects from anywhere on the page. */
+.project-switch {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16) var(--space-48);
+  padding-block: var(--space-16);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-divider);
+}
+.project-switch__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.project-switch__num { font-size: 0.72em; letter-spacing: 0.04em; }
+.project-switch__item:hover,
+.project-switch__item--active { color: var(--color-text); }
+.project-switch__item--active .project-switch__num { color: var(--accent); }
+
 /* ---- Hero ---------------------------------------------------------------- */
 .hero { display: flex; flex-direction: column; gap: var(--space-24); }
 

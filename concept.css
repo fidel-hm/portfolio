@@ -153,6 +153,7 @@
 
 /* size / aspect variants */
 .media--portrait .media__frame { aspect-ratio: 3 / 4; }    /* vertical photo */
+.media--square   .media__frame { aspect-ratio: 1 / 1; }    /* square photo */
 .media--pano     .media__frame { aspect-ratio: 21 / 9; }   /* horizontal panorama */
 /* full-height: show the whole photo as tall as the screen, centered, never
    cropped or distorted (scales down to fit; works for portrait or landscape). */

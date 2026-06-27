@@ -21,6 +21,9 @@ behavior is not designed yet (see *Open questions* at the bottom).
 > - The **start page is About** (`index.html`). The Figma "Portfolio Home (1st)"
 >   scattered project-wall was an early draft and has been dropped.
 > - Projects are reached via the **Projects** nav → overview → sidebar menu.
+> - **Dark mode** (not in the Figma): a `prefers-color-scheme: dark` block in
+>   `tokens.css` flips the colour tokens, so the whole site adapts when the OS is
+>   dark. Every component reads the tokens, so nothing else needs changing.
 > - The **project detail pages now use a new full-width "concept" template**
 >   (accent-split title + 3-image asymmetric gallery + "next project" link;
 >   styles in `concept.css`, behaviour in `concept.js`) instead of the original

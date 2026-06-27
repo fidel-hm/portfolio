@@ -8,6 +8,8 @@
    ============================================================================= */
 
 :root {
+  color-scheme: light dark;     /* UA controls (scrollbars, form fields) follow the theme */
+
   /* ---- Color ------------------------------------------------------------- */
   --color-bg: #f5f5f5;          /* page background */
   --color-text: #000000;        /* primary text, active nav/menu items */
@@ -53,6 +55,21 @@
   --photo-pair-height: 480px;    /* each photo in a side-by-side pair */
   --photo-pair-gap: 24px;
   --about-image-height: 420px;   /* about-page image column */
+}
+
+/* =============================================================================
+   Dark theme — not in the Figma (light-only), added so the site works when the
+   OS/browser is in dark mode. Only the colour tokens flip; every component reads
+   them, so the whole site (incl. the sticky project switcher) adapts.
+   ============================================================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121212;          /* page background */
+    --color-text: #f2f2f2;        /* primary text, active nav/menu items */
+    --color-text-muted: #8c8c8c;  /* inactive nav/menu items, caption numbers, subtitles */
+    --color-placeholder: #262626; /* image placeholder boxes */
+    --color-divider: #303030;     /* hairline dividers + switcher border */
+  }
 }
 
 /* =============================================================================

@@ -41,26 +41,29 @@
       </section>
 
       <section class="gallery">
-        <div class="media-pair">
-          <figure class="media media--square reveal">
-            <div class="media__frame"><img class="media__img" src="images/mono-poly/01.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-            <figcaption class="media__cap"><span class="num">01</span></figcaption>
-          </figure>
-          <figure class="media media--square reveal">
-            <div class="media__frame"><img class="media__img" src="images/mono-poly/02.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-            <figcaption class="media__cap"><span class="num">02</span></figcaption>
-          </figure>
+        <!-- Pair 01 — two squares, side by side -->
+        <div class="pair-group reveal">
+          <div class="media-pair">
+            <figure class="media media--square">
+              <div class="media__frame"><img class="media__img" src="images/mono-poly/01.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+            </figure>
+            <figure class="media media--square">
+              <div class="media__frame"><img class="media__img" src="images/mono-poly/02.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+            </figure>
+          </div>
+          <div class="media__cap"><span class="num">01</span></div>
         </div>
 
-        <figure class="media media--pano reveal">
-          <div class="media__frame"><img class="media__img" src="images/mono-poly/03.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="media__cap"><span class="num">03</span></figcaption>
-        </figure>
-
-        <figure class="media media--pano reveal">
-          <div class="media__frame"><img class="media__img" src="images/mono-poly/04.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="media__cap"><span class="num">04</span></figcaption>
-        </figure>
+        <!-- Pair 02 — two panoramas, stacked -->
+        <div class="pair-group reveal">
+          <figure class="media media--pano">
+            <div class="media__frame"><img class="media__img" src="images/mono-poly/03.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          </figure>
+          <figure class="media media--pano">
+            <div class="media__frame"><img class="media__img" src="images/mono-poly/04.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          </figure>
+          <div class="media__cap"><span class="num">02</span></div>
+        </div>
       </section>
 
       <a class="next reveal" href="inside-outside.html">

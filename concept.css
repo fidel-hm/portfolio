@@ -150,11 +150,13 @@
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: var(--space-48);
+  gap: var(--space-64);          /* generous space between top-level blocks / pairs */
 }
 /* two frames side by side (e.g. a pair of verticals) */
 .media-pair { display: flex; gap: var(--space-24); }
 .media-pair > .media { flex: 1 1 0; min-width: 0; }
+/* a group of related frames that share one caption (kept tighter together) */
+.pair-group { display: flex; flex-direction: column; gap: var(--space-24); }
 
 .media { margin: 0; display: flex; flex-direction: column; gap: var(--space-16); }
 .media__frame {

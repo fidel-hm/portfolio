@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FidelMu — Contact</title>
+  <title>Fidelis Müller — Contact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="concept.css">
 </head>
 <body>
-  <div class="page">
+  <div class="progress" aria-hidden="true"></div>
+
+  <div class="canvas">
     <header class="header">
       <a class="header__logo" href="index.html">Fidelis Müller</a>
       <nav class="nav">
@@ -21,11 +23,16 @@
       </nav>
     </header>
 
-    <!-- Stub: not yet designed in Figma. Header + placeholder note. -->
-    <main class="stub">
-      <h1 class="title">Contact</h1>
-      <p class="stub__note">Diese Seite ist noch nicht gestaltet. (TODO)</p>
+    <main class="concept contact">
+      <div class="contact__inner reveal">
+        <span class="kicker">Contact</span>
+        <h1 class="hero__title"><span class="accent">Schreib</span> mir.</h1>
+        <p class="contact__lead">Für Anfragen, Kooperationen oder einfach so — ich freue mich über Nachrichten.</p>
+        <a class="contact__mail" href="mailto:fidelis.mueller@googlemail.com">fidelis.mueller@googlemail.com&nbsp;<span class="contact__arrow">→</span></a>
+      </div>
     </main>
   </div>
+
+  <script src="concept.js"></script>
 </body>
 </html>

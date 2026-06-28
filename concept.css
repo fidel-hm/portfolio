@@ -289,6 +289,40 @@
   color: var(--color-text-muted);
 }
 
+/* ---- Contact page -------------------------------------------------------- */
+/* Deliberately sparse: a single centered block — kicker, a short line, and the
+   email as a large clickable mailto link (accent on hover). */
+.contact { flex: 1; justify-content: center; }
+.contact__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-24);
+}
+.contact__lead {
+  margin: 0;
+  max-width: 34rem;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-text-muted);
+}
+.contact__mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  max-width: 100%;
+  font-size: clamp(22px, 3.2vw, 34px);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  text-decoration: none;
+  word-break: break-word;
+  transition: color 0.3s;
+}
+.contact__mail:hover { color: var(--accent); }
+.contact__arrow { display: inline-block; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.contact__mail:hover .contact__arrow { transform: translateX(10px); }
+
 /* ---- Next project -------------------------------------------------------- */
 .next {
   display: flex;

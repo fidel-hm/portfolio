@@ -11,12 +11,17 @@ box, so nothing breaks while you fill them in.
 - `04.jpg` — horizontal panorama (**bottom**)
 
 ## `inside-outside/`
-- `01.jpg` — horizontal image, full screen height (**top**)
-- `02.jpg` — horizontal image, full screen height (**bottom**)
+- `01.jpg` — vertical photo, **left** of the side-by-side trio
+- `02.jpg` — vertical photo, **middle**
+- `03.jpg` — vertical photo, **right**
 
 ## `showoff-understatement/`
 - `01.jpg` — vertical photo, **left**
 - `02.jpg` — vertical photo, **right**
+
+## `about/`
+- `01.jpg` — **portrait** photo of you (the tall image, right side)
+- `02.jpg` — **landscape** photo of you (under the bio text, left side)
 
 Need different names, more/fewer images, or a different format (e.g. `.png`)?
 Just say so and I'll update the pages.

@@ -184,6 +184,8 @@
 .media--portrait .media__frame { aspect-ratio: 3 / 4; }    /* vertical photo */
 .media--square   .media__frame { aspect-ratio: 1 / 1; }    /* square photo */
 .media--pano     .media__frame { aspect-ratio: 21 / 9; }   /* horizontal panorama */
+.media--tall     .media__frame { aspect-ratio: 2 / 3; }    /* full-height portrait photo */
+.media--wide     .media__frame { aspect-ratio: 3 / 2; }    /* landscape photo */
 /* full-height: show the whole photo as tall as the screen, centered, never
    cropped or distorted (scales down to fit; works for portrait or landscape). */
 .media--full { align-items: center; }
@@ -252,6 +254,41 @@
 .teaser__num { font-size: var(--text-base); color: var(--color-text-muted); transition: color 0.3s; }
 .teaser:hover .teaser__num { color: var(--accent); }
 
+/* ---- About page ---------------------------------------------------------- */
+/* Asymmetric editorial split: a text column (bio + a landscape photo) beside a
+   tall portrait. align-items:start lets the two columns keep their own heights. */
+.about {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-48);
+  align-items: start;
+}
+.about__col { display: flex; flex-direction: column; gap: var(--space-48); }
+
+/* Short bio block: a large lead statement + a muted supporting paragraph. The
+   photos reuse the shared .media components. */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  max-width: 42rem;
+}
+.about-text .lead {
+  margin: 0;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+.about-text .lead .accent { color: var(--accent); }
+.about-text .prose {
+  margin: 0;
+  max-width: 34rem;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-text-muted);
+}
+
 /* ---- Next project -------------------------------------------------------- */
 .next {
   display: flex;
@@ -308,6 +345,7 @@
   .concept { gap: var(--space-64); }
   .media-pair { flex-direction: column; }  /* side-by-side pairs stack */
   .index { grid-template-columns: 1fr; gap: var(--space-48); }
+  .about { grid-template-columns: 1fr; gap: var(--space-48); }
   /* full-height images become normal full-width on small screens */
   .media--full { align-items: stretch; }
   .media--full .media__frame { width: 100%; }
